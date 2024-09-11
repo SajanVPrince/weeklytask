@@ -15,6 +15,7 @@ while True:
     if c==1:
         print('Add Food')
         fname=str(input('Enter Food: '))
+        fname=fname.lower()
         type=str(input('Enter Type : '))
         price=float(input('Enter your price : '))
         htl.append({'fname':fname,'type':type,'price':price})
