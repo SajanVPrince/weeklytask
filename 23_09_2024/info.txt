@@ -1,0 +1,67 @@
+*user=[id,name,phone,location,pin,password]
+*med=[id,name,price,stock]
+*staff=[id,name,phone,position,location,salary,password]
+
+
+Task for Admin
+--------------
+a.Staffs
+    a1.Add Staff
+    a2.Update Staff salary
+    a3.delete Staff
+b.View Users
+c.View Medicines
+d.View Staffs
+
+Task For Staffs
+---------------
+a.View profile
+b.Add Medicines
+c.Update Medicines
+    c1.Price
+    c2.Stock
+d.Delete Medicines
+e.Update profile
+    e1.phone
+    e2.name
+    e3.location
+    e4.password
+    e5.email
+f.View Orders
+
+Task For Users
+--------------
+a.View profile
+b.View Medicines
+c.Update profile
+    c1.name
+    c2.Email
+    c3.location
+    c4.pin
+    c5.phone
+    c6.Change password
+d.buy product
+e.view Orders
+
+# String id incresing
+
+method 1
+--------
+id='user1004'
+for i in id:   
+    a=id[4:]
+    a=int(a)
+    a+=1
+    b=id[:4]
+    a=str(a)
+    c=b+a
+print(a)
+print(b)
+print(c)
+
+method 2
+--------
+id='user1000'
+a=id[4:]
+a+=1
+id='user'+ str(a)
