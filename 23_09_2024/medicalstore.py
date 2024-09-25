@@ -20,7 +20,7 @@ def register():
         location=str(input('enter your location : '))
         pin=int(input('enter your pincode : '))
         password=str(input('enter your password  : '))
-        usr.append({'id':id,'name':name,'email':email,'phone':phone,'location':location,'pin':pin,'password':password})
+        usr.append({'email':email,'name':name,'id':id,'phone':phone,'location':location,'pin':pin,'password':password,'orders':[]})
 
 def login():
     user=str(input('enter your user name : '))
@@ -34,7 +34,11 @@ def login():
         if user==i['email'] and passw==i['password']:
             f=2
             u=i
-    return f,u
+    for i in stf:
+        if user==i['id'] and passw==i['password']:
+            f=3
+            s=i
+    return f,u,s
 
 def add_stf():
     print('Add here..')
@@ -94,10 +98,91 @@ def view_pro(u):
     print('_'*80)
     print('{:<10}{:<14}{:<6}{:<10}{:<10}{:<20}{:<10}'.format(u['id'],u['name'],u['pin'],u['phone'],u['location'],u['email'],u['password']))
 
+def view_spro(s):
+    print('Staff details')
+    print('{:<10}{:<10}{:<10}{:<10}{:<10}{:<10}{:<10}'.format('ID','NAME','SALARY','PHONE','LOCATION','EMAIL','PASSWORD'))
+    print('_'*70)
+    print('{:<10}{:<10}{:<10}{:<10}{:<10}{:<10}{:<10}'.format(s['id'],s['name'],s['salary'],s['phone'],s['location'],s['email'],s['password']))
+
+def add_med():
+    if len(med)==0:
+            id='med1000'
+    else:
+        a=med[-1]['id']
+        b=int(a[3:])
+        b+=1
+        id= a[:3]+ str(b)
+    name=str(input('enter the name of medicine : '))
+    price=int(input('enter the price : '))
+    stock=int(input('enter the stock : '))
+    med.append({'id':id,'name':name,'price':price,'stock':stock})
+
+def price_cng():
+    id=str(input('enter id : '))
+    f=0
+    for i in med:
+        if i['id']==id:
+            price=int(input('enter new price : '))
+            i['price']=price
+            f=1
+            print('price updated')
+    if f==0:
+        print('no id availible')
+
+def stock_cng():
+    id=str(input('enter id : '))
+    f=0
+    for i in med:
+        if i['id']==id:
+            stock=int(input('enter new stock : '))
+            i['stock']=stock
+            f=1
+            print('stock updated')
+    if f==0:
+        print('no id availible')
+
+def delete_med():
+    id=str(input('enter id : '))
+    f=0
+    for i in med:
+        if i['id']==id:
+            med.remove(i)
+            print('data deleted')
+            f=1
+    if f==0:
+        print('no id availible')
+
+def buy_prod(u):
+    print('Medicine list')
+    print('{:<10}{:<10}{:<10}'.format('ID','NAME','PRICE'))
+    print('_'*30)
+    for i in med:
+        print('{:<10}{:<10}{:<10}'.format(i['id'],i['name'],i['price']))
+    buy=str(input('enter product id : '))
+    f=0
+    # for i in med:
+    if i['id']==buy:
+        if i['stock']>0:
+            i['stock']-=1
+            # ---------------
+            u['orders'].append(buy)
+            # ---------------
+            f=1
+        else:
+            print('out of stock')   
+    if f==0:
+        print('no id availible')
+            
+
+
+
+
+
+    
 
 usr=[{'id': 'user1000', 'name': 'a', 'email': 's@', 'phone': 2, 'location': 'd', 'pin': 2, 'password': 'asdf'}]
-stf=[{'id': 'staff1000', 'name': 'sa', 'salary': 2, 'password': 'staff1000'}]
-med=[]
+stf=[{'id': 'staff1000', 'name': 'sa', 'salary': 2, 'password': 'asdf', 'phone': 99, 'location': 'd', 'email': 'sa@'}]
+med=[{'id': 'med1000', 'name': 'para', 'price': 200, 'stock': 2}]
 while True:
     print('''
     1.Register as user
@@ -107,7 +192,7 @@ while True:
     if c==1:
         register()
     elif c==2:
-        f,u=login()
+        f,u,s=login()
 
         # Admin Login
 
@@ -117,7 +202,8 @@ while True:
                 1.Staffs
                 2.View Users
                 3.View Medicines
-                4.View Staffs''')
+                4.View Staffs
+                5.exit''')
                 c=int(input('enter your choice : '))
                 if c==1:
                     while True:
@@ -161,18 +247,139 @@ while True:
                 1.View profile
                 2.View Medicines
                 3.Update profile
-                4.buy product
-                5.view Orders
-                6.exit''')
+                4.Buy product
+                5.exit''')
                 c=int(input('enter your choice : '))
                 if c==1:
                     view_pro(u)
+                elif c==2:
+                    for i in med:
+                        print(i)
+                elif c==3:
+                    while True:
+                        print('''
+                        1.Update Name
+                        2.Update Phone
+                        3.Update email
+                        4.Update Location
+                        5.Update Pin
+                        6.Update Password 
+                        7.exit''')
+                        c1=int(input('enter your choice : '))
+                        if c1==1:
+                            name=str(input('enter your name : '))
+                            u['name']=name
+                        elif c1==2:
+                            phone=int(input('enter your number : '))
+                            u['phone']=phone
+                        elif c1==3:
+                            email=str(input('enter your mail : '))
+                            u['email']=email
+                        elif c1==4:
+                            location=str(input('enter your location : '))
+                            u['location']=location
+                        elif c1==5:
+                            pin=int(input('enter your pin : '))
+                            u['pin']=pin
+                        elif c1==6:
+                            password=str(input('enter your new password : '))
+                            u['password']=password
+                        elif c1==7:
+                            break
+                        else:
+                            print('invalid choice')
+                elif c==4:
+                    buy_prod(u)
+                elif c==5:
+                    break
+                else:
+                    print('invalid choice')
+
+        # staff login
+
         elif f==3:
-            print('staff login')
+            if s['id']==s['password']:
+                    phone=int(input('enter your number : '))
+                    location=str(input('enter your location : '))
+                    email=str(input('enter your email : '))
+                    password=str(input('enter a new password : '))
+                    s['phone']=phone
+                    s['location']=location
+                    s['email']=email
+                    s['password']=password
+            while True:
+                print('''
+                1.View profile
+                2.Add Medicines
+                3.Update Medicines
+                4.Delete Medicines
+                5.Update profile
+                6.exit''')
+                c=int(input('enter your choice : '))
+                if c==1:
+                    view_spro(s)
+                elif c==2:
+                    add_med()
+                elif c==3:
+                    while True:
+                        print('''
+                        1.Price
+                        2.Stock
+                        3.exit''')
+                        c1=int(input('enter the choice : '))
+                        if c1==1:
+                            price_cng()
+                        elif  c1==2:
+                            stock_cng()
+                        elif c1==3:
+                            break
+                        else:
+                            print('invalid choice')
+                elif c==4:
+                    delete_med()
+                elif c==5:
+                    while True:
+                        print('''
+                        1.phone
+                        2.name
+                        3.location
+                        4.password
+                        5.email
+                        6.exit''')
+                        c2=int(input('enter your choice : '))
+                        if c2==1:
+                            phone=int(input('enter your phone number : '))
+                            s['phone']=phone
+                        elif c2==2:
+                            name=str(input('enter your name : '))
+                            s['name']=name
+                        elif c2==3:
+                            location=str(input('enter your location : '))
+                            s['location']=location
+                        elif c2==4:
+                            password=str(input('enter your new password : '))
+                            s['password']=password
+                        elif c2==5:
+                            email=str(input('enter your email : '))
+                            s['email']=email
+                        elif c2==6:
+                            break
+                        else:
+                            print('invalid choice')
+                elif c==6:
+                    break
+                else:
+                    print('invalid choice')   
         else:
             print('invalid login')
-
     elif c==3:
         break
     else:
         print('--Invalid Choice--')
+
+    for i in usr:
+        print(i)
+    for i in med:
+        print(i)
+    for i in stf:
+        print(i)
