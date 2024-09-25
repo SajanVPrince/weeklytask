@@ -47,8 +47,11 @@ def add_stf():
         id= a[:5]+ str(b)
     name=str(input('enter staff name : '))
     salary=int(input('enter staff salary : '))
+    phone=0000000000
+    location='xxxxx'
+    email='xxxxx'
     password=id
-    stf.append({'id':id,'name':name,'salary':salary,'password':password,'phone':'','location':'','email':''})
+    stf.append({'id':id,'name':name,'salary':salary,'password':password,'phone':phone,'location':location,'email':email})
 
 def salup():
     id=input('enter staff id : ')
@@ -76,15 +79,20 @@ def vusr():
     print('{:<10},{:<10}{:<10},{:<10},{:<10}'.format('ID','NAME','EMAIL','PHONE','LOCATION'))
     print('_'*50)
     for i in usr:
-        print('{:<10},{:<10}{:<10},{:<10},{:<10}'.format(i['id'],i['name'],i['email'],i['phone'],i['location']))
+        print('{:<10}{:<10}{:<10}{:<10}{:<10}'.format(i['id'],i['name'],i['email'],i['phone'],i['location']))
 
 def vstf():
     print('Staff details')
-    print('{:<10},{:<10}{:<10}{:<10},{:<10},{:<10}'.format('ID','NAME','SALARY','PHONE','LOCATION','EMAIL'))
-    print('_'*30)
+    print('{:<10}{:<10}{:<10}{:<10}{:<10}{:<10}'.format('ID','NAME','SALARY','PHONE','LOCATION','EMAIL'))
+    print('_'*60)
     for i in stf:
-        print('{:<10},{:<10}{:<10}'.format(i['id'],i['name'],i['salary']))
+        print('{:<10}{:<10}{:<10}{:<10}{:<10}{:<10}'.format(i['id'],i['name'],i['salary'],i['phone'],i['location'],i['email']))
 
+def view_pro(u):
+    print('My Profile')
+    print('{:<10}{:<14}{:<6}{:<10}{:<10}{:<20}{:<10}'.format('ID','NAME','PIN','PHONE','LOCATION','EMAIL','PASSWORD'))
+    print('_'*80)
+    print('{:<10}{:<14}{:<6}{:<10}{:<10}{:<20}{:<10}'.format(u['id'],u['name'],u['pin'],u['phone'],u['location'],u['email'],u['password']))
 
 
 usr=[{'id': 'user1000', 'name': 'a', 'email': 's@', 'phone': 2, 'location': 'd', 'pin': 2, 'password': 'asdf'}]
@@ -100,6 +108,9 @@ while True:
         register()
     elif c==2:
         f,u=login()
+
+        # Admin Login
+
         if f==1:
             while True:
                 print('''
@@ -137,8 +148,25 @@ while True:
                         print(i)
                 elif c==4:
                     vstf()
+                elif c==5:
+                    break
+                else:
+                    print('invalid option')
+        
+        # User Login
+
         elif f==2:
-            print('user login')
+            while True:
+                print('''
+                1.View profile
+                2.View Medicines
+                3.Update profile
+                4.buy product
+                5.view Orders
+                6.exit''')
+                c=int(input('enter your choice : '))
+                if c==1:
+                    view_pro(u)
         elif f==3:
             print('staff login')
         else:
