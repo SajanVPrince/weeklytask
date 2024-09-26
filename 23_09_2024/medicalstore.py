@@ -168,19 +168,28 @@ def buy_prod(u):
             u['orders'].append(buy)
             # ---------------
             f=1
+            amt=int(input('enter the amount needed : '))
+            ttl=i['price']*amt
+            print('Total Bill amount is : ',ttl)
         else:
             print('out of stock')   
     if f==0:
         print('no id availible')
-            
 
-
-
-
-
+def view_orders():
+    print('{:<10}{:<10}{:<10}'.format('ID','NAME','ORDERS'))
+    print('_'*30)
+    for i in usr:
+        print('{:<10}{:<10}{:<10}'.format(i['id'],i['name'],i['orders']))
     
+def v_uodr(u):
+    print('{:<10}'.format('ORDERS'))
+    print('_'*10)
+    print('{:<10}'.format(u['orders']))
+    
+        
 
-usr=[{'id': 'user1000', 'name': 'a', 'email': 's@', 'phone': 2, 'location': 'd', 'pin': 2, 'password': 'asdf'}]
+usr=[{'id': 'user1000', 'name': 'a', 'email': 's@', 'phone': 2, 'location': 'd', 'pin': 2, 'password': 'asdf','orders':[]}]
 stf=[{'id': 'staff1000', 'name': 'sa', 'salary': 2, 'password': 'asdf', 'phone': 99, 'location': 'd', 'email': 'sa@'}]
 med=[{'id': 'med1000', 'name': 'para', 'price': 200, 'stock': 2}]
 while True:
@@ -203,7 +212,8 @@ while True:
                 2.View Users
                 3.View Medicines
                 4.View Staffs
-                5.exit''')
+                5.View Orders
+                6.exit''')
                 c=int(input('enter your choice : '))
                 if c==1:
                     while True:
@@ -235,6 +245,8 @@ while True:
                 elif c==4:
                     vstf()
                 elif c==5:
+                    view_orders()
+                elif c==6:
                     break
                 else:
                     print('invalid option')
@@ -248,7 +260,8 @@ while True:
                 2.View Medicines
                 3.Update profile
                 4.Buy product
-                5.exit''')
+                5.View Orders
+                6.exit''')
                 c=int(input('enter your choice : '))
                 if c==1:
                     view_pro(u)
@@ -291,7 +304,7 @@ while True:
                 elif c==4:
                     buy_prod(u)
                 elif c==5:
-                    break
+                    v_uodr(u)
                 else:
                     print('invalid choice')
 
@@ -314,7 +327,8 @@ while True:
                 3.Update Medicines
                 4.Delete Medicines
                 5.Update profile
-                6.exit''')
+                6.View Orders
+                7.exit''')
                 c=int(input('enter your choice : '))
                 if c==1:
                     view_spro(s)
@@ -367,6 +381,8 @@ while True:
                         else:
                             print('invalid choice')
                 elif c==6:
+                    view_orders()
+                elif c==7:
                     break
                 else:
                     print('invalid choice')   
@@ -376,10 +392,3 @@ while True:
         break
     else:
         print('--Invalid Choice--')
-
-    for i in usr:
-        print(i)
-    for i in med:
-        print(i)
-    for i in stf:
-        print(i)
