@@ -305,6 +305,8 @@ while True:
                     buy_prod(u)
                 elif c==5:
                     v_uodr(u)
+                elif c==6:
+                    break
                 else:
                     print('invalid choice')
 
