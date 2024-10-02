@@ -177,19 +177,28 @@ def buy_prod(u):
         print('no id availible')
 
 def view_orders():
-    print('{:<10}{:<10}{:<10}'.format('ID','NAME','ORDERS'))
-    print('_'*30)
+    # print('{:<10}{:<10}{:<10}'.format('ID','NAME','ORDERS'))
+    # print('_'*30)
+    # for i in usr:
+    #     print('{:<10}{:<10}{:<10}'.format(i['id'],i['name'],i['orders']))
     for i in usr:
-        print('{:<10}{:<10}{:<10}'.format(i['id'],i['name'],i['orders']))
+        print(f"Name : {i['name']} And Orders : {i['orders']}")
     
 def v_uodr(u):
     print('{:<10}'.format('ORDERS'))
     print('_'*10)
     print('{:<10}'.format(u['orders']))
+
+def view_med():
+    print('Medicine list')
+    print('{:<10}{:<10}{:<10}'.format('ID','NAME','PRICE'))
+    print('_'*30)
+    for i in med:
+        print('{:<10}{:<10}{:<10}'.format(i['id'],i['name'],i['price']))
     
         
 
-usr=[{'id': 'user1000', 'name': 'a', 'email': 's@', 'phone': 2, 'location': 'd', 'pin': 2, 'password': 'asdf','orders':[]}]
+usr=[{'id': 'user1000', 'name': 'a', 'email': 's@', 'phone': 2, 'location': 'd', 'pin': 2, 'password': 'asdf','orders':['med1000']}]
 stf=[{'id': 'staff1000', 'name': 'sa', 'salary': 2, 'password': 'asdf', 'phone': 99, 'location': 'd', 'email': 'sa@'}]
 med=[{'id': 'med1000', 'name': 'para', 'price': 200, 'stock': 2}]
 while True:
@@ -231,8 +240,7 @@ while True:
                         elif c1==3:
                             delstf()
                         elif c1==4:
-                            for i in stf:
-                                print(i)
+                            vstf()
                         elif c1==5:
                             break
                         else:
@@ -240,8 +248,7 @@ while True:
                 elif c==2:
                     vusr()
                 elif c==3:
-                    for i in med:
-                        print(i)
+                    view_med()
                 elif c==4:
                     vstf()
                 elif c==5:
@@ -266,8 +273,7 @@ while True:
                 if c==1:
                     view_pro(u)
                 elif c==2:
-                    for i in med:
-                        print(i)
+                    view_med()
                 elif c==3:
                     while True:
                         print('''
