@@ -1,0 +1,3 @@
+user=[]
+bank=[]
+staff=[]
