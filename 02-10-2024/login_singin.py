@@ -1,4 +1,4 @@
-from data import user,staff
+user=[{'id':'abcd1000','name':'Sajan','age':22,'email':'s@','phone':9207,'password':'asdf','balance':1800,'trans':[{'day':10/6/24,'amt':2000,'mode':'Deposit'},{'day':10/6/24,'amt':-200,'mode':'Withdraw'},]}]
 def register():
     if len(user)==0:
         id='abcd1000'
@@ -19,9 +19,8 @@ def register():
         age=int(input('enter your age : '))
         phone=int(input('enter your mobile number : '))
         password=input('enter your password : ')
-        acctype='0'
         balance=0
-        user.append({'id':id,'name':name,'age':age,'email':email,'phone':phone,'password':password,'acctyp':acctype,'balance':balance,'trans':[]})
+        user.append({'id':id,'name':name,'age':age,'email':email,'phone':phone,'password':password,'balance':balance,'trans':[]})
 
 def login():
     usr=str(input('enter your user name : '))

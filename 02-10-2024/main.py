@@ -1,7 +1,7 @@
 from login_singin import *
-from data import *
 from admin import *
 from user import *
+
 while True:
     print('''
     1.Register as new
@@ -19,34 +19,15 @@ while True:
         if f==1:
             while True:
                 print('''
-                1.Staff
-                2.View Staff
-                3.View Users
-                4.exit''')
+                1.View Users
+                2.Transactions
+                3.exit''')
                 c=int(input('enter your choice : '))
                 if c==1:
-                    while True:
-                        print('''
-                        1.Add Staff
-                        2.Update staff salary
-                        3.delete staff
-                        4.exit''')
-                        c1=int(input('enter your choice : '))
-                        if c1==1:
-                            add_stf()
-                        elif c1==2:
-                            up_sal()
-                        elif c1==3:
-                            del_stf()
-                        elif c1==4:
-                            break
-                        else:
-                            print('invalid choice')
-                elif c==2:
-                    view_staff()
-                elif c==3:
                     view_usr()
-                elif c==4:
+                elif c==2:
+                    transaction(user)
+                elif c==3:
                     break
                 else:
                     print('invalid choice')
@@ -74,8 +55,43 @@ while True:
                     with_mny(u)
                 elif c==4:
                     statement(u)
-                
+                elif c==5:
+                    send_mny(u)
+                elif c==6:
+                    while True:
+                        print('''
+                            1.Phone
+                            2.email
+                            3.Age
+                            4.Password
+                            5.exit''')
+                        c1=int(input('enter your choice : '))
+                        if c1==1:
+                            phone=int(input('enter your phone number : '))
+                            u['phone']=phone
+                        elif c1==2:
+                            email=str(input('enter your email : '))
+                            u['email']=email
+                        elif c1==3:
+                            age=int(input('enter your age : '))
+                            u['age']=age
+                        elif c1==4:
+                            password=str(input('enter your current password : '))
+                            if u['password']==password:
+                                pass1=str(input('enter your new password : '))
+                                u['password']=pass1
+                            else:
+                                print('Password missmatch...')
+                        elif c1==5:
+                            break
+                        else:
+                            print('invalid choice')
+                elif c==7:
+                    break
+                else:
+                    print('invalid choice')
 
+# ---------------------------- USER END -----------------------------------         
     elif c==3:
         break
     else:
