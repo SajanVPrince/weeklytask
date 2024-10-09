@@ -1,4 +1,4 @@
-user=[{'id':'abcd1000','name':'Sajan','age':22,'email':'s@','phone':9207,'password':'asdf','balance':1800,'trans':[{'day':10/6/24,'amt':2000,'mode':'Deposit'},{'day':10/6/24,'amt':-200,'mode':'Withdraw'},]}]
+user=[{'id':'abcd1000','name':'Sajan','age':22,'email':'s@','phone':9207,'password':'asdf','balance':1800,'trans':[]}]
 def register():
     if len(user)==0:
         id='abcd1000'

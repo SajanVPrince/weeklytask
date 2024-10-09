@@ -26,7 +26,7 @@ while True:
                 if c==1:
                     view_usr()
                 elif c==2:
-                    transaction(user)
+                    transaction()
                 elif c==3:
                     break
                 else:

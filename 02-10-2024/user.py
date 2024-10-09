@@ -45,5 +45,5 @@ def send_mny(u):
         u['trans'].append({'day':tran.strftime("%x"),'amt':-amt,'mode':'Upi'})
         print(f'{amt} amount credited to {upi} and your current balance is {u['balance']}')
     else:
-        print('invalid upi')
+        print('Insufficient amount')
 
