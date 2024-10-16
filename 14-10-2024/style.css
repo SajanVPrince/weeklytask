@@ -1,0 +1,14 @@
+#cat{
+    width: 100%;
+    height: 10px;
+    color: rgb(8, 8, 8);
+    position: absolute;
+}
+#ul1{
+    white-space: nowrap ;
+    text-decoration: none;
+}
+.rounded-carousel {
+    border-radius: 50px;
+    overflow: hidden; 
+  }
